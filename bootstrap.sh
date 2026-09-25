@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-DOTFILES_URL="https://github.com/Monkhai/dotfiles.git"
+DOTFILES_URL="https://github.com/monkhai/dotfiles.git"
+SKILLS_REPO_URL="${SKILLS_REPO_URL:-https://github.com/monkhai/personal-skills.git}"
 DOTFILES_DIR="${DOTFILES_DIR:-$HOME/dotfiles}"
 SKILLS_DIR="${SKILLS_DIR:-$HOME/Developer/skills}"
 
@@ -58,13 +59,6 @@ do
   fi
 done
 
-if command -v codex >/dev/null 2>&1; then
-  skip_casks+=("codex")
-fi
-if command -v claude >/dev/null 2>&1; then
-  skip_casks+=("claude-code")
-fi
-
 if (( ${#skip_casks[@]} )); then
   export HOMEBREW_BUNDLE_CASK_SKIP="${HOMEBREW_BUNDLE_CASK_SKIP:+$HOMEBREW_BUNDLE_CASK_SKIP }${skip_casks[*]}"
 fi
@@ -85,12 +79,17 @@ fi
 skills_ready=false
 if [[ -f "$SKILLS_DIR/bin/link.sh" ]]; then
   skills_ready=true
-elif [[ -n "${SKILLS_REPO_URL:-}" ]]; then
+else
   if [[ -e "$SKILLS_DIR" ]]; then
     echo "$SKILLS_DIR exists but has no bin/link.sh; fix it before retrying." >&2
     exit 1
   fi
   mkdir -p "$(dirname "$SKILLS_DIR")"
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "Sign in to GitHub to install your private personal skills..."
+    gh auth login
+  fi
+  gh auth setup-git
   git clone "$SKILLS_REPO_URL" "$SKILLS_DIR"
   skills_ready=true
 fi
@@ -102,14 +101,7 @@ fi
 cat <<'NEXT_STEPS'
 
 Installed. Finish these sign-ins and macOS permissions:
-  - Sign in to 1Password, Tailscale, Dia, ChatGPT, Raycast, Codex, and Claude Code.
-  - Run `gh auth login`.
+  - Sign in to 1Password, Tailscale, Dia, ChatGPT, and Raycast.
   - Grant the permissions requested by AltTab and Raycast.
   - Import your Raycast .rayconfig export if you want your old Raycast settings.
 NEXT_STEPS
-
-if [[ "$skills_ready" != true ]]; then
-  echo "Shared skills are pending: no fetchable skills repo is configured." >&2
-  echo "Rerun with SKILLS_REPO_URL set after the skills repo is published." >&2
-  exit 2
-fi

@@ -16,8 +16,8 @@ It can be run again after an interrupted install. It preserves existing files
 by moving them aside before linking. Apps already present in `/Applications`
 or `~/Applications` are kept; Homebrew installs the missing apps.
 
-Personal skills live in a separate private repository. Pass its clone URL as
-`SKILLS_REPO_URL` to include them in the same run after signing in to GitHub.
+The script signs in to GitHub when needed and installs personal skills from a
+separate private repository.
 
 Sign-ins, macOS permissions, and Raycast's `.rayconfig` import remain manual.
 

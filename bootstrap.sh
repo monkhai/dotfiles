@@ -40,7 +40,36 @@ if [[ ! -d "$DOTFILES_DIR/.git" ]]; then
   git clone "$DOTFILES_URL" "$DOTFILES_DIR"
 fi
 
-echo "Installing apps and command-line tools..."
+skip_casks=()
+for app in \
+  "1password:1Password.app" \
+  "alt-tab:AltTab.app" \
+  "chatgpt:ChatGPT.app" \
+  "ghostty:Ghostty.app" \
+  "raycast:Raycast.app" \
+  "tailscale-app:Tailscale.app" \
+  "thebrowsercompany-dia:Dia.app" \
+  "zed:Zed.app"
+do
+  IFS=: read -r cask app_name <<< "$app"
+  if [[ -d "/Applications/$app_name" || -d "$HOME/Applications/$app_name" ]]; then
+    skip_casks+=("$cask")
+    echo "Keeping existing $app_name"
+  fi
+done
+
+if command -v codex >/dev/null 2>&1; then
+  skip_casks+=("codex")
+fi
+if command -v claude >/dev/null 2>&1; then
+  skip_casks+=("claude-code")
+fi
+
+if (( ${#skip_casks[@]} )); then
+  export HOMEBREW_BUNDLE_CASK_SKIP="${HOMEBREW_BUNDLE_CASK_SKIP:+$HOMEBREW_BUNDLE_CASK_SKIP }${skip_casks[*]}"
+fi
+
+echo "Installing missing apps and command-line tools..."
 brew bundle install --no-upgrade --file="$DOTFILES_DIR/Brewfile"
 
 if [[ ! -f "$HOME/.oh-my-zsh/oh-my-zsh.sh" ]]; then

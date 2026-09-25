@@ -13,7 +13,8 @@ curl -fsSLo /tmp/yohai-mac-bootstrap.sh https://raw.githubusercontent.com/Monkha
 The script installs Homebrew if needed, installs the apps and CLI tools in
 `Brewfile`, clones this repo, installs Oh My Zsh, and links Zsh and Zed settings.
 It can be run again after an interrupted install. It preserves existing files
-by moving them aside before linking.
+by moving them aside before linking. Apps already present in `/Applications`
+or `~/Applications` are kept; Homebrew installs the missing apps.
 
 Shared skills currently live in a separate local repository with no remote.
 Once that repository is published, pass its clone URL as `SKILLS_REPO_URL` to

@@ -1,0 +1,24 @@
+# Vercel Light — light counterpart to Ghostty's bundled "Vercel" theme.
+# Same hues as the dark variant, darkened for contrast on a white background.
+palette = 0=#000000
+palette = 1=#c50029
+palette = 2=#167c36
+palette = 3=#9a6700
+palette = 4=#0057d1
+palette = 5=#c01a69
+palette = 6=#00786a
+palette = 7=#8f8f8f
+palette = 8=#666666
+palette = 9=#e01b48
+palette = 10=#1e9e42
+palette = 11=#b87a00
+palette = 12=#0070e0
+palette = 13=#e0247e
+palette = 14=#009b88
+palette = 15=#fafafa
+background = #ffffff
+foreground = #000000
+cursor-color = #c01a69
+cursor-text = #ffffff
+selection-background = #b3d4ff
+selection-foreground = #000000

@@ -24,6 +24,8 @@ link_path() {
 
 link_path "$DOTFILES_DIR/zed/settings.json" "$HOME/.config/zed/settings.json"
 link_path "$DOTFILES_DIR/zed/keymap.json" "$HOME/.config/zed/keymap.json"
+link_path "$DOTFILES_DIR/ghostty/config" "$HOME/.config/ghostty/config"
+link_path "$DOTFILES_DIR/ghostty/themes/Vercel Light" "$HOME/.config/ghostty/themes/Vercel Light"
 
 link_path "$DOTFILES_DIR/zsh/.zshenv" "$HOME/.zshenv"
 link_path "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"

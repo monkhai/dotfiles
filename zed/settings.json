@@ -7,16 +7,36 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+    "debugger": {
+        "dock": "right"
+    },
+    "cli_default_open_behavior": "existing_window",
+    "outline_panel": {
+        "dock": "right"
+    },
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    "terminal": {
+        "font_family": "JetBrains Mono",
+        "dock": "right",
+        "minimum_contrast": 50.0
+    },
+    "colorize_brackets": true,
+    "indent_guides": {
+        "coloring": "indent_aware"
+    },
     "ui_font_weight": 500.0,
-    "buffer_font_weight": 500.0,
+    "buffer_font_weight": 300.0,
     "diff_view_style": "unified",
     "show_edit_predictions": false,
     "icon_theme": {
-        "mode": "dark",
+        "mode": "system",
         "light": "Zed (Default)",
         "dark": "Zed (Default)",
     },
     "git_panel": {
+        "group_by": "staging",
         "show_count_badge": true,
         "file_icons": true,
         "tree_view": true,
@@ -26,6 +46,19 @@
     },
     "ui_font_family": "JetBrains Mono",
     "agent": {
+        "expand_terminal_card": false,
+        "message_editor_min_lines": 2,
+        "play_sound_when_agent_done": "always",
+        "thinking_display": "always_collapsed",
+        "sandbox_permissions": {
+            "allow_unsandboxed": true,
+            "write_paths": [
+                {
+                    "requested": "/Users/yohaiwiener/.config/zed",
+                    "resolved": "/Users/yohaiwiener/.config/zed"
+                }
+            ]
+        },
         "notify_when_agent_waiting": "never",
         "tool_permissions": {
             "default": "allow",
@@ -40,23 +73,42 @@
                     "default": "allow",
                     "always_allow": [
                         {
-                            "pattern": "^packages/edsdk/",
+                            "pattern": "^packages/edsdk/"
                         },
+                        {
+                            "pattern": "^assembly/visualizer/\\.zed/"
+                        }
                     ],
                 },
             },
         },
         "default_model": {
-            "effort": "high",
-            "provider": "anthropic",
-            "model": "claude-opus-4-6-latest",
+            "speed": "fast",
+            "effort": "xhigh",
+            "provider": "openai-subscribed",
+            "model": "gpt-5.6-sol",
             "enable_thinking": true,
         },
         "dock": "left",
-        "favorite_models": [],
+        "favorite_models": [
+            {
+                "provider": "openai-subscribed",
+                "model": "gpt-6-astra",
+                "enable_thinking": true,
+                "effort": "medium"
+            }
+        ],
         "model_parameters": [],
     },
-    "agent_servers": {},
+    "agent_servers": {
+        "claude-acp": {
+            "default_config_options": {
+                "mode": "bypassPermissions",
+                "fast": true
+            },
+            "type": "registry"
+        }
+    },
     "session": {
         "trust_all_worktrees": true,
     },
@@ -69,8 +121,10 @@
     "gutter": {
         "line_numbers": true,
     },
-    "buffer_font_fallbacks": ["monospace"],
-    "buffer_font_family": "JetBrains Mono",
+    "buffer_font_fallbacks": [
+        "monospace"
+    ],
+    "buffer_font_family": "JetBrainsMono Nerd Font",
     "auto_indent_on_paste": true,
     "linked_edits": true,
     "use_on_type_format": true,
@@ -78,14 +132,31 @@
     "ensure_final_newline_on_save": false,
     "preferred_line_length": 120,
     "hard_tabs": false,
-    "tab_size": 4,
+    "tab_size": 2,
     "base_keymap": "VSCode",
     "ui_font_size": 16,
     "buffer_font_size": 15,
     "lsp": {
+        "vtsls": {
+            "settings": {
+                "typescript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "always"
+                    }
+                },
+                "javascript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "always"
+                    }
+                }
+            },
+            "enable_lsp_tasks": true
+        },
         "typescript-language-server": {
             "initialization_options": {
-                "diagnosticsIgnoredCodes": [80001],
+                "diagnosticsIgnoredCodes": [
+                    80001
+                ],
             },
         },
     },
@@ -125,8 +196,8 @@
         },
     },
     "theme": {
-        "mode": "dark",
-        "light": "Dayfox - opaque",
-        "dark": "Duskfox - opaque",
+        "mode": "system",
+        "light": "Vercel Light",
+        "dark": "Vercel Dark",
     },
 }

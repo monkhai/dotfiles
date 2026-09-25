@@ -33,12 +33,6 @@
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-j": null
-    }
-  },
-  {
-    "context": "Workspace",
-    "bindings": {
       "cmd-j": "terminal_panel::Toggle"
     }
   },
@@ -255,6 +249,53 @@
   {
     "bindings": {
       "cmd-shift-g": "git::Diff"
+    }
+  },
+  {
+    "context": "FileFinder || FileFinder > Picker > Editor || FileFinder > Picker > menu",
+    "bindings": {
+      "alt-cmd-j": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "FileFinder || FileFinder > Picker > Editor || FileFinder > Picker > menu",
+    "unbind": {
+      "cmd-j": "pane::SplitDown"
+    }
+  },
+  {
+    "context": "KeymapEditor",
+    "bindings": {
+      "ctrl-alt-cmd-e": "zed::OpenKeymapFile"
+    }
+  },
+  {
+    "context": "KeymapEditor",
+    "unbind": {
+      "cmd-e": "zed::OpenKeymapFile"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-e": "workspace::FocusCenterPane"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "alt-cmd-s": "multi_workspace::ToggleWorkspaceSidebar"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "alt-cmd-j": "multi_workspace::ToggleWorkspaceSidebar"
+    }
+  },
+  {
+    "context": "Workspace",
+    "unbind": {
+      "alt-cmd-s": "workspace::SaveAll"
     }
   }
 ]
